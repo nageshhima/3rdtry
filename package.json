@@ -1,0 +1,20 @@
+{
+  "name": "captcha-site",
+  "version": "1.0.0",
+  "description": "A simple website with Cloudflare CAPTCHA",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^3.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "16.x"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <!-- Add Turnstile JS -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+
+<body>
+    <div id="content" class="hidden">
+        <h1>Page Under Construction</h1>
+        <p>We're working hard to get this page up and running. Please check back later!</p>
+    </div>
+
+    <!-- Turnstile CAPTCHA -->
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAAzdcIooMfjOeJEr"></div>
+
+    <button onclick="verifyCaptcha()">Verify</button>
+
+    <script>
+        function verifyCaptcha() {
+            // Get the Turnstile token
+            const token = document.querySelector('.cf-turnstile').getAttribute('data-token');
+
+            // Send the token to the server for verification
+            fetch('/verify-captcha', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ token: token })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('content').classList.remove('hidden');
+                    alert("Captcha verified successfully!");
+                } else {
+                    alert("Captcha verification failed. Please try again.");
+                }
+            })
+            .catch(err => console.error('Error verifying captcha:', err));
+        }
+    </script>
+</body>
+
+</html>
