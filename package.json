@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "engines": {
-    "node": "18.x"  // or "20.x", depending on the version you want
+    "node": "18.x"
   },
   "type": "module"
 }
